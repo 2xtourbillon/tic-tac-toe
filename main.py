@@ -36,7 +36,7 @@ class TICTACTOE(tk.Tk):
             self.btns[x][y].config(text='O', bg='white', state='disabled')
         
         # checking the results of after turn
-        # self.Check_Results(char)
+        self.Check_Results(char)
 
         # give turn to second player
         self.turn = not self.turn
@@ -51,5 +51,44 @@ class TICTACTOE(tk.Tk):
         self.count = 0
         # build the board
         self.Board()
+
+    # checking the results
+    def Check_Results(self, char):
+        # check the rows
+        if ((
+            (self.btns[0][0]['text'] == char) and 
+            (self.btns[0][1]['text'] == char) and
+            (self.btns[0][2]['text'] == char)
+        ) 
+        or (
+            (self.btns[1][0]['text'] == char) and
+            (self.btns[1][1]['text'] == char) and
+            (self.btns[1][2]['text'] == char)
+        )
+        or (
+            (self.btns[2][0]['text'] == char) and
+            (self.btns[3][1]['text'] == char) and
+            (self.btns[4][2]['text'] == char)
+            )):
+                pass
+        # check the columns
+        elif ((
+            (self.btns[0][0]['text'] == char) and 
+            (self.btns[1][0]['text'] == char) and
+            (self.btns[2][0]['text'] == char)
+        ) 
+        or (
+            (self.btns[0][1]['text'] == char) and
+            (self.btns[1][1]['text'] == char) and
+            (self.btns[2][1]['text'] == char)
+        )
+        or (
+            (self.btns[0][2]['text'] == char) and
+            (self.btns[1][2]['text'] == char) and
+            (self.btns[2][2]['text'] == char)
+        )):
+            pass
+
+
 
 TICTACTOE().mainloop()
