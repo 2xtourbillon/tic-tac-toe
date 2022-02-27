@@ -16,13 +16,14 @@ class TICTACTOE(tk.Tk):
             row = []
             for j in range(0, 3):
                 row.append(tk.Button(self, width=10, height=3, font='Calibri 35 bold',
-                            command=lambda x=1, y=j: self.Turn_Taken(x, y)))
+                            command=lambda x=i, y=j: self.Turn_Taken(x, y)))
                 row[j].grid(row=i, column=j)
             self.btns.append(row) #appending row to entire window
         tk.Button(self, text='New Game', width=10, height=1, font='Calibri 15 bold',
                   bg='black', fg='white', activebackground='blue3', activeforeground='white',
                   command=self.NEWGAME).grid(row=3, column=1)
 
+    # taking a turn
     def Turn_Taken(self, x, y):
         self.count += 1
         
@@ -35,10 +36,20 @@ class TICTACTOE(tk.Tk):
             self.btns[x][y].config(text='O', bg='white', state='disabled')
         
         # checking the results of after turn
-        self.Check_Results(char)
+        # self.Check_Results(char)
 
         # give turn to second player
         self.turn = not self.turn
 
+    # destroy and create new game
+    def NEWGAME(self):
+        for widget in self.winfo_children():
+            widget.destroy()
+        # resetting vars
+        self.btns = []
+        self.turn = True
+        self.count = 0
+        # build the board
+        self.Board()
 
 TICTACTOE().mainloop()
