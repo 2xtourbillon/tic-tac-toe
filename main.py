@@ -23,6 +23,22 @@ class TICTACTOE(tk.Tk):
                   bg='black', fg='white', activebackground='blue3', activeforeground='white',
                   command=self.NEWGAME).grid(row=3, column=1)
 
+    def Turn_Taken(self, x, y):
+        self.count += 1
+        
+        # taking your turn; 'X' will go always first
+        if self.turn:
+            char = 'X'
+            self.btns[x][y].config(text='X', bg='black', state='disabled')
+        else:
+            char = 'O'
+            self.btns[x][y].config(text='O', bg='white', state='disabled')
+        
+        # checking the results of after turn
+        self.Check_Results(char)
+
+        # give turn to second player
+        self.turn = not self.turn
 
 
 TICTACTOE().mainloop()
