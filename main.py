@@ -70,7 +70,7 @@ class TICTACTOE(tk.Tk):
             (self.btns[3][1]['text'] == char) and
             (self.btns[4][2]['text'] == char)
             )):
-                pass
+                self.Result(char)
         # check the columns
         elif ((
             (self.btns[0][0]['text'] == char) and 
@@ -86,8 +86,8 @@ class TICTACTOE(tk.Tk):
             (self.btns[0][2]['text'] == char) and
             (self.btns[1][2]['text'] == char) and
             (self.btns[2][2]['text'] == char)
-        )):
-            pass
+            )):
+                self.Result(char)
         
         # diagonal conditions
         elif ((
@@ -99,8 +99,32 @@ class TICTACTOE(tk.Tk):
             (self.btns[0][2]['text'] == char) and
             (self.btns[1][1]['text'] == char) and
             (self.btns[2][0]['text'] == char)
-        )):
-            pass
+            )):
+                self.Result(char)
+        
+        # check if all turns are taken
+        elif self.count == 9:
+            self.Result('Draw')
+
+    # announce results
+    def Result(self, char):
+        top = tk.Toplevel(self)
+        if char == 'Draw':
+            top.title('OOPS!')
+            topText = tk.Label(top, text='It is a Draw!', font='Calibri 20 bold', fg='Blue')
+        else:
+            top.title('Congratulations')
+            topText = tk.Label(top, text=f'{char} is the WINNER!', font='Calibri 30 bold', fg='Blue')
+
+        # new game button
+        topButton = tk.Button(top, text='New Game', bg='black', fg='white',
+                              activebackground='blue3', activeforeground='white', 
+                              command=self.NEWGAME)
+
+        # create grid
+        topText.grid(row=0, column=0, padx=10, pady=10)
+        topButton.grid(row=1, column=0)
+
         
 
 
