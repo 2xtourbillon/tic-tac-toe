@@ -71,7 +71,7 @@ class TICTACTOE(tk.Tk):
             (self.btns[4][2]['text'] == char)
             )):
                 self.Result(char)
-        # check the columns
+        # check the columns..
         elif ((
             (self.btns[0][0]['text'] == char) and 
             (self.btns[1][0]['text'] == char) and
